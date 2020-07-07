@@ -10,7 +10,13 @@
     />
     <div>
       <hr />
-      <Todo v-for="todo in todos" :key="todo.id" :todo="todo" />
+      <Todo
+        v-for="todo in todos"
+        :key="todo.id"
+        :todo="todo"
+        @toggle-checkbox="toggleCheckbox"
+        @click-delete="clickDelete"
+      />
     </div>
   </div>
 </template>
@@ -29,13 +35,25 @@ export default {
         checked: false
       });
       this.todoText = "";
+    },
+    toggleCheckbox({ id, checked }) {
+      const index = this.todos.findIndex(todo => {
+        return todo.id === id;
+      });
+      this.todos[index].checked = checked;
+    },
+    clickDelete(id) {
+      const index = this.todos.findIndex(todo => {
+        return todo.id === id;
+      });
+      this.todos.splice(index, 1);
     }
   },
   data() {
     return {
       todoText: "",
       todos: [
-        { id: 1, text: "buy a car", checked: true },
+        { id: 1, text: "buy a car", checked: false },
         { id: 2, text: "buy a car", checked: false }
       ]
     };
