@@ -1,19 +1,19 @@
 <template>
   <div id="app" class="container">
     <h1 class="text-center">Todo App</h1>
-    <CompletedTodo :todos="todos" />
-    <AddTodo @add-todo="addTodo" />
+    <CompletedTodo />
+    <AddTodo />
     <div>
       <hr />
-      <TodoList :todos="todos" @toggle-checkbox="toggleCheckbox" @click-delete="clickDelete" />
+      <TodoList />
     </div>
   </div>
 </template>
 
 <script>
-import TodoList from "@/components/TodoList.vue";
-import AddTodo from "@/components/AddTodo.vue";
-import CompletedTodo from "@/components/CompletedTodo.vue";
+import TodoList from "@/components/TodoList.vue"
+import AddTodo from "@/components/AddTodo.vue"
+import CompletedTodo from "@/components/CompletedTodo.vue"
 export default {
   components: { TodoList, AddTodo, CompletedTodo },
   methods: {
@@ -22,28 +22,27 @@ export default {
         id: Math.random(),
         text: value,
         checked: false
-      });
+      })
     },
     toggleCheckbox({ id, checked }) {
-      const index = this.todos.findIndex(todo => {
-        return todo.id === id;
-      });
-      this.todos[index].checked = checked;
+      const index = this.todos.findIndex((todo) => {
+        return todo.id === id
+      })
+      this.todos[index].checked = checked
     },
     clickDelete(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id);
+      this.todos = this.todos.filter((todo) => todo.id !== id)
     }
   },
   data() {
     return {
-      todos: [
-        { id: 1, text: "buy a car", checked: false },
-        { id: 2, text: "buy a car", checked: false }
-      ]
-    };
+      // todos: [
+      //   { id: 1, text: "buy a car", checked: false },
+      //   { id: 2, text: "buy a car", checked: false }
+      // ]
+    }
   }
-};
+}
 </script>
 
-<style>
-</style>
+<style></style>

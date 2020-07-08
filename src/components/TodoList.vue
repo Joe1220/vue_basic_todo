@@ -11,13 +11,11 @@
 </template>
 
 <script>
-import Todo from "@/components/Todo.vue";
+import Todo from "@/components/Todo.vue"
 export default {
-  comments: { Todo },
-  props: {
-    todos: {
-      type: Array,
-      required: true
+  computed: {
+    todos() {
+      return this.$store.state.todos
     }
   },
   components: {
@@ -25,14 +23,13 @@ export default {
   },
   methods: {
     toggleCheckbox(value) {
-      this.$emit("toggle-checkbox", value);
+      this.$emit("toggle-checkbox", value)
     },
     clickDelete(todoId) {
-      this.$emit("click-delete", todoId);
+      this.$emit("click-delete", todoId)
     }
   }
-};
+}
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
